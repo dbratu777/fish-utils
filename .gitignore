@@ -4,20 +4,20 @@ predict-preprocessing/output/*
 !predict-preprocessing/input/.gitkeep
 !predict-preprocessing/output/.gitkeep
 
+train-preprocessing/input/*
 train-preprocessing/output/*
-train-preprocessing/output/*
 
+!train-preprocessing/input/.gitkeep
 !train-preprocessing/output/.gitkeep
-!train-preprocessing/output/.gitkeep
 
+vid-combine/input/*
 vid-combine/output/*
-vid-combine/output/*
 
+!vid-combine/input/.gitkeep
 !vid-combine/output/.gitkeep
-!vid-combine/output/.gitkeep
 
-vid-seg/output/*
+vid-seg/input/*
 vid-seg/output/*
 
-!vid-seg/output/.gitkeep
+!vid-seg/input/.gitkeep
 !vid-seg/output/.gitkeep
