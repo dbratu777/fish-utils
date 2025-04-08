@@ -1,6 +1,8 @@
-import os
+import argparse
 import cv2
 import numpy
+import os
+import time
 from PIL import Image
 
 # Set a fixed random seed for reproducibility
@@ -46,7 +48,7 @@ def preprocess_images_or_video(input_path, output_dir, size=(1024, 1024), batch_
                 if len(batch) == batch_size or i == len(input_files) - 1:
                     processed_imgs = process_batch(batch, size=size)
                     for j, processed_img in enumerate(processed_imgs):
-                        output_path = os.path.join(output_dir, f"{i-batch_size+j+1}.png")
+                        output_path = os.path.join(output_dir, f"{time.time()}.png")
                         Image.fromarray((processed_img * 255).astype(numpy.uint8)).save(output_path)
                     batch.clear()
 
@@ -79,4 +81,9 @@ def preprocess_images_or_video(input_path, output_dir, size=(1024, 1024), batch_
     print("Preprocessing complete.")
 
 if __name__ == "__main__":
-    preprocess_images_or_video("input", "output")
+    parser = argparse.ArgumentParser(description="Fish Friend's Prediction Material Pre-Processing Utility.")
+    parser.add_argument("input", nargs="?", default="input")
+    parser.add_argument("output", nargs="?", default="output")
+    args = parser.parse_args()
+
+    preprocess_images_or_video(args.input, args.output)
