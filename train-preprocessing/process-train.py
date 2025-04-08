@@ -16,10 +16,7 @@ def grayscale_img(img):
 
 def augment_img(img):
     transform = albumentations.Compose([
-        albumentations.PadIfNeeded(min_height=1024, min_width=1024, p=1),
-        albumentations.RandomCrop(width=1024, height=1024),
         albumentations.HorizontalFlip(p=0.5),
-        albumentations.Rotate(limit=30, p=0.7),
         albumentations.RandomBrightnessContrast(p=0.2),
         albumentations.GaussianBlur(blur_limit=(3, 7), p=0.5),
         albumentations.ColorJitter(brightness=0.2, contrast=0.2, saturation=0.2, hue=0.2, p=0.5)
