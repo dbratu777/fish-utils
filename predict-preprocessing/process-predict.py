@@ -31,7 +31,7 @@ def process_batch(batch, size=(1024, 1024)):
             img = normalize_img(img)
             processed_imgs.append(img)
         except Exception as e:
-            print(f"ERROR: {e}")
+            print(f"[FISH-FRIEND::process-predict::ERR]: {e}.")
     return processed_imgs
 
 
@@ -58,10 +58,11 @@ def preprocess_images_or_video(input_path, output_dir, size=(1024, 1024), batch_
                             output_dir, f"{time.time()}.png")
                         Image.fromarray(
                             (processed_img * 255).astype(numpy.uint8)).save(output_path)
+                        print(f"[FISH-FRIEND::process-predict::LOG]: pre-processed {output_path}.")
                     batch.clear()
 
             except Exception as e:
-                print(f"ERROR: {img_name} - {e}")
+                print(f"[FISH-FRIEND::process-predict::ERR]: {img_name} - {e}.")
 
     elif os.path.isfile(input_path) and input_path.endswith(('.mp4', '.avi', '.mov')):
         # Process video
@@ -82,13 +83,13 @@ def preprocess_images_or_video(input_path, output_dir, size=(1024, 1024), batch_
                         output_dir, f"{frame_idx + j + 1}.png")
                     Image.fromarray(
                         (processed_frame * 255).astype(numpy.uint8)).save(output_path)
+                    print(f"[FISH-FRIEND::process-predict::LOG]: pre-processed {output_path}")
+
                 batch.clear()
 
             frame_idx += 1
 
         cap.release()
-
-    print("Preprocessing complete.")
 
 
 if __name__ == "__main__":
